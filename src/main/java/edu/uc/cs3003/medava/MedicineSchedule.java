@@ -9,6 +9,7 @@ public enum MedicineSchedule {
     Uncontrolled(6);
 
     private int mSchedule;
+
     private MedicineSchedule(int schedule) {
         mSchedule = schedule;
     }

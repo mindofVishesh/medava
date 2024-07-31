@@ -2,10 +2,8 @@ package edu.uc.cs3003.medava;
 
 public class Pharmacy {
 
-    // Declare the private field to store the pharmacy name
     private String mPharmacyName;
 
-    // Constructor to initialize the pharmacy name
     public Pharmacy(String pharmacyName) {
         this.mPharmacyName = pharmacyName;
     }
@@ -54,7 +52,6 @@ public class Pharmacy {
         return true;
     }
 
-    // Getter method to retrieve the pharmacy name
     public String pharmacyName() {
         return mPharmacyName;
     }
