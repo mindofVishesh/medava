@@ -1,6 +1,8 @@
 package edu.uc.cs3003.medava;
 
 import java.util.List;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 public class Transporter {
@@ -9,8 +11,7 @@ public class Transporter {
     private String mTransporterName;
     private double mLowTemperature, mHighTemperature;
 
-    // Declare the goods field to store the list of medicines
-    private List<Medicine> goods;
+    private List<Object> goods;
 
     // Constructor to initialize the transporter name and temperature ranges
     public Transporter(String transporterName, double lowTemp, double highTemp) {
@@ -25,18 +26,23 @@ public class Transporter {
         return mTransporterName;
     }
 
-    // Method to load a medicine into the transporter if temperature range is acceptable
-    public boolean load(Medicine itemToLoad) {
-        if (itemToLoad.isTemperatureRangeAcceptable(mLowTemperature, mHighTemperature)) {
-            System.out.println(String.format("Adding a %s to the transporter.", itemToLoad.getMedicineName()));
-            goods.add(itemToLoad);
-            return true;
+        public boolean load(Object itemToLoad) {
+        try {
+            Method isTemperatureRangeAcceptableMethod = itemToLoad.getClass().getMethod("isTemperatureRangeAcceptable",
+                    Double.class, Double.class);
+            boolean resultOfMethodCall = (boolean) isTemperatureRangeAcceptableMethod.invoke(itemToLoad,
+                    Double.valueOf(mLowTemperature), Double.valueOf(mHighTemperature));
+            if (resultOfMethodCall) {
+                goods.add(itemToLoad);
+            }
+            return resultOfMethodCall;
+        } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
+                | InvocationTargetException e) {
+            return false;
         }
-        return false;
     }
 
-    // Method to unload a medicine from the transporter
-    public Medicine unload() {
+    public Object unload() {
         return goods.remove(0);
     }
 
