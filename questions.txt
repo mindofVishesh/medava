@@ -1,0 +1,3 @@
+What are the performance implications of using interfaces versus direct class inheritance?
+What are the trade-offs between using reflection for dynamic type checking and using interfaces for static type checking?
+How does Java handle method resolution when multiple interfaces define methods with the same name but different parameters?
