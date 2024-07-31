@@ -1,9 +1,11 @@
 package edu.uc.cs3003.medava;
 
-public class Medicine {
+public abstract class Medicine {
 
     // Declare the private field to store the medicine name
     private String mMedicineName;
+
+    public abstract MedicineSchedule getSchedule();
 
     // Constructor that takes a single parameter (the name of the medicine)
     public Medicine(String medicineName) {

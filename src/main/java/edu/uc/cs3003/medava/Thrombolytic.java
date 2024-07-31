@@ -17,4 +17,9 @@ public class Thrombolytic extends Medicine {
       System.out.println("Getting the maximum safe temperature for a Thrombolytic drug.");
       return 41.0;
     }
+
+    @Override
+    public MedicineSchedule getSchedule() {
+      return MedicineSchedule.Uncontrolled;
+    }
 }
